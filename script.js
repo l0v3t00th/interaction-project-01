@@ -116,4 +116,5 @@ function init() {
 function checkCompletion() {
     const allSpans = document.querySelectorAll('.word-btn');
     const congratsDiv = document.getElementById('congrats');
-    const currentText = Array.from(all
+    const currentText = Array.from(all)
+}
