@@ -1,0 +1,82 @@
+@import url(https://db.onlinewebfonts.com/c/23255fa3ff7a89589800cea3092f154f?family=NB+International+Regular+Webfont);
+
+body {
+    background-color: white;
+    color: #1a1a1a;
+    font-family: "NB International Regular Webfont";    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+h1 {
+    font-size: clamp(6rem, 10vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -3px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#regen-btn {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    background: transparent;
+    color: #333;
+    border: 1px solid #333;
+    margin-bottom: 60px;
+    transition: all 0.3s ease;
+}
+
+#regen-btn:hover {
+    background: #333;
+    color: #fff;
+}
+
+#content-area {
+    max-width: 1000px;
+    text-align: center;
+    font-size: 1.5rem;
+    min-height: 300px;
+}
+
+/* 단어 버튼 스타일 */
+.word-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 4px;
+    margin: 2px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: all 0.2s;
+    vertical-align: middle;
+}
+
+.word-btn:hover {
+    color: #b22222;
+    background: rgba(0,0,0,0.05);
+}
+
+/* 이미지 스타일 */
+.word-img {
+    height: 1.5em;
+    width: auto;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+#congrats {
+    margin-top: 50px;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #432525;
+    height: 30px;
+    font-weight: bold;
+}
