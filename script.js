@@ -1,9 +1,9 @@
-// 1. 데이터베이스: 변환될 단어, 이모티콘 등
+// 1. 데이터베이스: 변환될 단어들
 const db = [
     "void", "infinity", "0101", "🌐", "labyrinth", "mirror", "sand", "pixel", "💾", "cloud", "dream", "cryptic", "dust", "page", "shadow", "system", "ERROR", "NULL", "∞", "portal", "archive", "ghost", "binary", "⌛", "mirrors", "infinite", "🌀", "library", "desert", "nothingness", "unknown", "✨", "grain", "👁️", "unending", "memory", "book", "Cambridge", "ten o'clock", "February", "1969", "the event", "took", "place", "I","made", "no", "attempt", "to" , "record", "it", "at", "the", "time",  "because",  "fearing",  "for",  "my", "mind", "initial",  "aim",  "was",  "to",  "forget",  "Now", "some", "years",  "later", "feel", "that", "if", "commit", "paper", "others", "will", "read", "as",  "a", "story",  "and",  "hope",  "one", "day",  "become",  "story", "for",  "me", "well.", "know", "horrifying", "while", "lasted", "even", "more",  "so",  "during",  "sleepless", "nights", "followed", "but", "this", "does not",  "mean",  "an account",  "of", "necessarily",  "move",  "anyone",  "else"
 ];
 
-// 2. 랜덤 이동할 유튜브 링크 리스트
+// 2. 미궁의 링크들 (유튜브)
 const youtubeLinks = [
     "https://youtu.be/teNm5MwHf1c?si=m4TDGhiMSATIs-Sb",
     "https://youtu.be/AumYP6Np1eI?si=huP_N86BtGaZmMwi",
@@ -53,6 +53,7 @@ const passages = [
 
 let currentPassage;
 
+// 랜덤 콘텐츠(이미지/단어) 생성
 function getRandomContent() {
     if (Math.random() > 0.6) {
         const randomId = Math.floor(Math.random() * 1000);
@@ -62,24 +63,33 @@ function getRandomContent() {
     }
 }
 
-// REGENERATE 버튼 클릭 시 실행되는 함수
+// 핵심 로직: REGENERATE 버튼의 운명 결정
 function handleRegenerate() {
-    // 15%의 확률로 유튜브 링크로 이동 (0.15 숫자를 조절해서 확률 변경 가능)
-    if (Math.random() < 0.15) {
+    // 0~1 사이의 난수를 생성하여 0.2 미만이면 유튜브, 아니면 문단 교체 (20% 확률)
+    // 확률을 높이고 싶다면 0.2를 0.5 등으로 수정하세요.
+    const fate = Math.random();
+
+    if (fate < 0.2) {
+        // 결과 1: 유튜브 미궁으로 이동
         const randomLink = youtubeLinks[Math.floor(Math.random() * youtubeLinks.length)];
         window.location.href = randomLink;
-        return; // 유튜브로 이동하면 아래 문단 생성 로직은 실행하지 않음
+    } else {
+        // 결과 2: 사이트 내에서 문단 무작위 교체
+        init();
     }
-    
-    // 확률에 걸리지 않으면 평소처럼 문단 생성
-    init();
 }
 
 function init() {
     const contentArea = document.getElementById('content-area');
     const congratsDiv = document.getElementById('congrats');
     
-    currentPassage = passages[Math.floor(Math.random() * passages.length)];
+    // 이전과 다른 문단을 선택하도록 로직 보완
+    let newPassage;
+    do {
+        newPassage = passages[Math.floor(Math.random() * passages.length)];
+    } while (newPassage === currentPassage && passages.length > 1);
+    
+    currentPassage = newPassage;
     const words = currentPassage.full.split(" ");
     
     contentArea.innerHTML = "";
@@ -90,6 +100,7 @@ function init() {
         span.className = "word-btn";
         span.dataset.correct = word;
 
+        // 첫 문장과 마지막 문장 고정 로직
         const isFirstPart = currentPassage.first.includes(word);
         const isLastPart = currentPassage.last.includes(word);
 
@@ -116,5 +127,17 @@ function init() {
 function checkCompletion() {
     const allSpans = document.querySelectorAll('.word-btn');
     const congratsDiv = document.getElementById('congrats');
-    const currentText = Array.from(all)
+    const currentText = Array.from(allSpans).map(s => s.innerText.trim()).join(" ");
+    const targetText = currentPassage.full.replace(/\s+/g, ' ').trim();
+
+    if (currentText === targetText) {
+        congratsDiv.innerText = "Congratulations. The book is infinite, and you have restored its order.";
+    } else {
+        congratsDiv.innerText = "";
+    }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('regen-btn').onclick = handleRegenerate;
+    init();
+});
