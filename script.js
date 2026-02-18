@@ -3,6 +3,7 @@ const db = [
     "void", "infinity", "0101", "🌐", "labyrinth", "mirror", "sand", "pixel", "💾", "cloud", "dream", "cryptic", "dust", "page", "shadow", "system", "ERROR", "NULL", "∞", "portal", "archive", "ghost", "binary", "⌛", "mirrors", "infinite", "🌀", "library", "desert", "nothingness", "unknown", "✨", "grain", "👁️", "unending", "memory", "book", "Cambridge", "ten o'clock", "February", "1969", "the event", "took", "place", "I","made", "no", "attempt", "to" , "record", "it", "at", "the", "time",  "because",  "fearing",  "for",  "my", "mind", "initial",  "aim",  "was",  "to",  "forget",  "Now", "some", "years",  "later", "feel", "that", "if", "commit", "paper", "others", "will", "read", "as",  "a", "story",  "and",  "hope",  "one", "day",  "become",  "story", "for",  "me", "well.", "know", "horrifying", "while", "lasted", "even", "more",  "so",  "during",  "sleepless", "nights", "followed", "but", "this", "does not",  "mean",  "an account",  "of", "necessarily",  "move",  "anyone",  "else"
 ];
 
+// 2. 미궁의 링크들 (유튜브)
 const youtubeLinks = [
     "https://youtu.be/teNm5MwHf1c?si=m4TDGhiMSATIs-Sb",
     "https://youtu.be/AumYP6Np1eI?si=huP_N86BtGaZmMwi",
@@ -11,6 +12,7 @@ const youtubeLinks = [
     "https://youtu.be/4IMsI0R5qPw?si=XeXGaBT25t9AyAfb"
 ];
 
+// 3. 보르헤스 문단 데이터베이스
 const passages = [
     {
         full: "The line consists of an infinite number of points; the plane, of an infinite number of lines; the volume, of an infinite number of planes; the hypervolume, of an infinite number of volumes. No, this, more geometrico, is not the best way of beginning my story.",
